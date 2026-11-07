@@ -50,3 +50,157 @@ body.modal-open{overflow:hidden}
 @keyframes popIn{from{opacity:0;transform:translateY(18px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(max-width:530px){.ticker-item{font-size:19px}.ticker-item.active{font-size:23px}.modal-card{padding:29px 22px 24px}}
 @media(prefers-reduced-motion:reduce){.modal-card{animation:none}}
+
+/* V3.1 — Presentación de sorteo: solo cuando el documento está en pantalla completa. */
+html:fullscreen:has(#drawScreen:not([hidden])){
+  background:#fff;
+  color-scheme:light;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) body{
+  min-height:100dvh;
+  background:#fff;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .topbar,
+html:fullscreen:has(#drawScreen:not([hidden])) footer{
+  display:none;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) main{
+  min-height:100dvh;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .draw-screen{
+  max-width:none;
+  width:100%;
+  min-height:100dvh;
+  padding:clamp(16px,3vw,46px);
+  display:grid;
+  grid-template-columns:minmax(160px,1fr) minmax(280px,1.4fr) minmax(190px,1fr);
+  grid-template-rows:auto minmax(0,1fr);
+  column-gap:clamp(16px,3vw,58px);
+  align-items:center;
+  justify-items:stretch;
+  background:#fff;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .draw-top{
+  display:none;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .draw-content{
+  display:contents;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .draw-head{
+  grid-column:1/-1;
+  grid-row:1;
+  text-align:center;
+  align-self:end;
+  padding-top:clamp(4px,2vh,30px);
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .draw-head .eyebrow{
+  display:none;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .draw-head h1{
+  font-size:clamp(27px,3.4vw,49px);
+  letter-spacing:-1.5px;
+  margin:0 0 6px;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .draw-head > p:last-child{
+  margin:0;
+  font-size:12px;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .draw-actions{
+  grid-column:1;
+  grid-row:2;
+  justify-self:center;
+  width:min(100%,255px);
+  margin:0;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .draw-actions .huge{
+  min-width:0;
+  width:100%;
+  padding:15px 18px;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .draw-actions p{
+  font-size:11px;
+  text-align:center;
+  margin:8px 0 0;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .ticker-viewport{
+  grid-column:2;
+  grid-row:2;
+  width:100%;
+  max-width:520px;
+  height:365px;
+  justify-self:center;
+  margin:0;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .ticker-viewport .focus-frame{
+  top:135px;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .ticker-item{
+  font-size:clamp(18px,2vw,24px);
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .ticker-item.active{
+  font-size:clamp(20px,2.25vw,28px);
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .winner-area{
+  display:none !important;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .results{
+  grid-column:3;
+  grid-row:2;
+  width:100%;
+  max-width:360px;
+  max-height:65dvh;
+  overflow:auto;
+  margin:0;
+  justify-self:center;
+  align-self:center;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .results-heading{
+  display:block;
+  text-align:center;
+  border-bottom:2px solid #ded5e0;
+  padding-bottom:12px;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .results-heading .eyebrow,
+html:fullscreen:has(#drawScreen:not([hidden])) #exportBtn{
+  display:none;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .results-heading h2{
+  font-size:clamp(14px,1.8vw,21px);
+  text-transform:uppercase;
+  letter-spacing:-.4px;
+}
+html:fullscreen:has(#drawScreen:not([hidden])) .results li{
+  font-size:13px;
+}
+/* Si el dispositivo está en vertical, mantenemos todo accesible sin romper el sorteo. */
+@media(max-width:760px){
+  html:fullscreen:has(#drawScreen:not([hidden])) .draw-screen{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    grid-template-rows:auto auto auto;
+    gap:8px 16px;
+    align-content:start;
+  }
+  html:fullscreen:has(#drawScreen:not([hidden])) .draw-head{grid-column:1/-1;grid-row:1}
+  html:fullscreen:has(#drawScreen:not([hidden])) .ticker-viewport{
+    grid-column:1/-1;
+    grid-row:2;
+    max-width:480px;
+    height:365px;
+  }
+  html:fullscreen:has(#drawScreen:not([hidden])) .draw-actions{
+    grid-column:1;
+    grid-row:3;
+    align-self:start;
+  }
+  html:fullscreen:has(#drawScreen:not([hidden])) .results{
+    grid-column:2;
+    grid-row:3;
+    max-height:22dvh;
+    align-self:start;
+  }
+}
+@media(max-width:420px){
+  html:fullscreen:has(#drawScreen:not([hidden])) .draw-screen{column-gap:8px;padding:12px}
+  html:fullscreen:has(#drawScreen:not([hidden])) .draw-actions .huge{padding:12px 10px}
+  html:fullscreen:has(#drawScreen:not([hidden])) .results-heading h2{font-size:12px}
+}
